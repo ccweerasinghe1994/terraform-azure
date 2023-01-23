@@ -4,6 +4,14 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "3.40.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~>3.0"
+    }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~>4.0"
+    }
   }
 }
 
@@ -106,12 +114,6 @@ resource "azurerm_linux_virtual_machine" "mtc-vm" {
   network_interface_ids = [
     azurerm_network_interface.mtc-nic.id,
   ]
-
-  admin_ssh_key {
-    username   = "chamara"
-    public_key = file("~/.ssh/mtcazurertckey.pub")
-  }
-
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
