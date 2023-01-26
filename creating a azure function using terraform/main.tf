@@ -49,7 +49,7 @@ resource "azurerm_linux_function_app" "cdt-bff-test" {
 
   functions_extension_version = "~4"
   tags = {
-    "key" = "value"
+    "environment" = "dev"
   }
   
 }
