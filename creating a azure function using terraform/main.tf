@@ -1,5 +1,7 @@
 provider "azurerm" {
-  features {}
+  features {
+  }
+  subscription_id = "c66df1ff-114b-4bfc-9088-cccef09a2c9c"
 }
 
 resource "azurerm_resource_group" "azure-linux-function-rg" {
@@ -46,10 +48,13 @@ resource "azurerm_linux_function_app" "cdt-bff-test" {
     remote_debugging_enabled = true
     remote_debugging_version = "VS2022"
   }
-
+  # enable_https_traffic_only = false
   functions_extension_version = "~4"
   tags = {
     "environment" = "dev"
   }
-  
+  app_settings = {
+    "DEV_KEY" = "1234"
+  }
+
 }
